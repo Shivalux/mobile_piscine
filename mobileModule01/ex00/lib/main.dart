@@ -36,11 +36,17 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
   
   @override
   void initState() {
+    super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(() {
       setState(() {});
     });
-    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -94,7 +100,7 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
       bottomNavigationBar: MediaQuery(
         data: MediaQuery.of(context).removePadding(removeBottom: true, removeTop: true),
         child: Padding(
-          padding: EdgeInsetsGeometry.only(bottom: Platform.isAndroid ? bottomInset: 0),
+          padding: EdgeInsetsGeometry.only(bottom: Platform.isAndroid ? bottomInset : 0),
           child: BottomAppBar(
             child: TabBar(
               controller: _tabController,

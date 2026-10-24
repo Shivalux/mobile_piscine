@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:io' show Platform;
 
-import 'package:flutter/services.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -52,6 +50,7 @@ class _WeatherAppState extends State<WeatherApp> with TickerProviderStateMixin {
   
   @override
   void dispose() {
+    _tabController.dispose();
     _textFieldFocus.removeListener(_onFocusChange);
     _textFieldFocus.dispose();
     super.dispose();
